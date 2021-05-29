@@ -1,0 +1,35 @@
+{
+  "manifest_version": 2,
+  "name": "AWWorker",
+  "description": "",
+  "version": "1.0.0",
+  "author": "",
+  "content_scripts": [
+    {
+      "matches": ["https://all-access.wax.io/cloud-wallet/signing/", "https://all-access.wax.io/cloud-wallet/login/"],
+      "js": ["content/approve.js"],
+      "run_at": "document_start",
+      "all_frames": false
+    },
+    {
+      "matches": ["https://all-access.wax.io/cloud-wallet/signing/", "https://www.google.com/recaptcha/api2/bframe*"],
+      "js": ["content/deny.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+  "permissions": ["<all_urls>", "tabs", "activeTab", "storage"],
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_icon": "image/bed.png"
+  },
+  "icons": {
+    "16": "image/bed.png",
+    "48": "image/bed.png",
+    "128": "image/bed.png"
+  }
+}
